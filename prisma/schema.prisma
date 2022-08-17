@@ -1,0 +1,157 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Enum_TransportationType {
+  land
+  maritime
+  aerial
+}
+
+enum Enum_CategoryTipe {
+  food
+  entretaiment
+  transportation
+  shopping
+}
+
+model Travel {
+  id           String                  @id @default(cuid())
+  name         String
+  startDate    DateTime
+  endDate      DateTime
+  users        UsersOnTravels[]
+  destinations DestinationsOnTravels[]
+  createdAt    DateTime                @default(now())
+  updatedAt    DateTime                @updatedAt
+}
+
+model UsersOnTravels {
+  travel   Travel @relation(fields: [travelId], references: [id])
+  travelId String
+  user     User   @relation(fields: [userId], references: [id])
+  userId   String
+
+  @@id([travelId, userId])
+}
+
+model DestinationsOnTravels {
+  travel        Travel      @relation(fields: [travelId], references: [id])
+  travelId      String
+  destination   Destination @relation(fields: [destinationId], references: [id])
+  destinationId String
+
+  @@id([travelId, destinationId])
+}
+
+model Destination {
+  id             String                  @id @default(cuid())
+  name           String
+  startDate      DateTime
+  endDate        DateTime
+  budget         Budget                  @relation(fields: [budgetId], references: [id])
+  budgetId       String                  @unique
+  transportation Enum_TransportationType
+  activities     Activity[]
+  comentaries    Comentary[]
+  users          DestinationsOnTravels[]
+  createdAt      DateTime                @default(now())
+  updatedAt      DateTime                @updatedAt
+}
+
+model Activity {
+  id            String      @id @default(cuid())
+  description   String
+  activityDate  DateTime
+  destination   Destination @relation(fields: [destinationId], references: [id])
+  destinationId String
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+}
+
+model Comentary {
+  id            String      @id @default(cuid())
+  comentaryText String
+  destination   Destination @relation(fields: [destinationId], references: [id])
+  destinationId String
+  replies       Reply[]
+  likes         Like[]
+  budget        Budget      @relation(fields: [budgetId], references: [id])
+  budgetId      String      @unique
+  user          User        @relation(fields: [userId], references: [id])
+  userId        String
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+}
+
+model Role {
+  id        String   @id @default(cuid())
+  name      String
+  users     User[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Reply {
+  id          String    @id @default(cuid())
+  user        User      @relation(fields: [userId], references: [id])
+  userId      String
+  comentary   Comentary @relation(fields: [comentaryId], references: [id])
+  comentaryId String
+  replyText   String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Like {
+  id          String    @id @default(cuid())
+  user        User      @relation(fields: [userId], references: [id])
+  userId      String
+  comentary   Comentary @relation(fields: [comentaryId], references: [id])
+  comentaryId String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model User {
+  id          String           @id @default(cuid())
+  name        String
+  role        Role             @relation(fields: [roleId], references: [id])
+  roleId      String
+  comentaries Comentary[]
+  replies     Reply[]
+  likes       Like[]
+  travels     UsersOnTravels[]
+  username    String           @unique
+  password    String
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+}
+
+model Budget {
+  id          String       @id @default(cuid())
+  amount      Float
+  destination Destination?
+  comentaries Comentary?
+  entries     Entry[]
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+}
+
+model Entry {
+  id            String            @id @default(cuid())
+  budgetEntries Int
+  budget        Budget            @relation(fields: [budgetId], references: [id])
+  budgetId      String
+  category      Enum_CategoryTipe
+  createdAt     DateTime          @default(now())
+  updatedAt     DateTime          @updatedAt
+}
