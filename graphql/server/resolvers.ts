@@ -1,6 +1,6 @@
 import { Resolver } from 'types';
-import { model1Resolvers } from '@graphql/server/model1/resolvers';
+import comentaryResolvers from '@graphql/server/comentary/resolvers';
 
-const globalResolvers: Resolver[] = [model1Resolvers];
+const globalResolvers: Resolver[] = [comentaryResolvers];
 
 export { globalResolvers };
