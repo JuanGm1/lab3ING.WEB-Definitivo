@@ -2,16 +2,25 @@ import { gql } from 'apollo-server-micro';
 
 const comentaryTypes = gql`
   type Comentary {
-    id: ID!
-    comentaryText: String!
-    destinationID: ID!
-    budgetID: ID!
-    userID: ID!
+    id: ID
+    comentaryText: String
+    destinationID: ID
+    budgetID: ID
+    userID: ID
   }
 
   type Query {
-    getComentary(): Comentary
+    getComentary: [Comentary]
+  }
+
+  type Mutation {
+    createComentary(
+      comentaryText: String
+      destinationID: ID
+      budgetID: ID
+      userID: ID
+    ): Comentary
   }
 `;
 
-export default { comentaryTypes };
+export { comentaryTypes };
