@@ -10,7 +10,8 @@ const comentaryTypes = gql`
   }
 
   type Query {
-    getComentary: [Comentary]
+    getComentaries: [Comentary]
+    getComentary(id: ID): Comentary
   }
 
   type Mutation {
