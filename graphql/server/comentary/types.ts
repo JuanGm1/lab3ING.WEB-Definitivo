@@ -5,7 +5,6 @@ const comentaryTypes = gql`
     id: ID
     comentaryText: String
     destinationID: ID
-    budgetID: ID
     userID: ID
   }
 
@@ -18,9 +17,9 @@ const comentaryTypes = gql`
     createComentary(
       comentaryText: String
       destinationID: ID
-      budgetID: ID
       userID: ID
     ): Comentary
+    updateComentary(id: String, comentaryText: String): Comentary
   }
 `;
 

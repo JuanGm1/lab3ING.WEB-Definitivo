@@ -23,11 +23,21 @@ const comentaryResolvers = {
         data: {
           comentaryText: args.comentaryText,
           destinationId: args.destinationID,
-          budgetId: args.budgetID,
           userId: args.userID,
         },
       });
       return comentary;
+    },
+    updateComentary: async (parent, args) => {
+      const updateComentary = await primsa.comentary.update({
+        where: {
+          id: args.id,
+        },
+        data: {
+          comentaryText: args.comentaryText,
+        },
+      });
+      return updateComentary;
     },
   },
 };
