@@ -1,6 +1,6 @@
 const TravelResolvers = {
   Query: {
-    getTravel: () => [
+    getTravel: async () => [
       {
         id: '1',
         name: 'Vacaciones',

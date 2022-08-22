@@ -9,6 +9,9 @@ const TravelsTypes = gql`
   type Query {
     getTravel(travelId: String): [Travel]
   }
+  type Mutation {
+    createTravel(id: String, name: String): Travel
+  }
 `;
 
 export { TravelsTypes };
