@@ -1,8 +1,9 @@
-import { gql } from 'apollo-server-micro';
-import comentaryTypes from '@graphql/server/comentary/types';
+// import { gql } from 'apollo-server-micro';
+// eslint-disable-next-line no-restricted-imports
+import { TravelsTypes } from './travels/types';
 
-const CommonTypes = gql``;
+// const globalTypes = gql``;
 
-const globalTypes = [CommonTypes, comentaryTypes];
+const GlobalTypes = [TravelsTypes];
 
-export { globalTypes };
+export { GlobalTypes };
