@@ -39,6 +39,14 @@ const comentaryResolvers = {
       });
       return updateComentary;
     },
+    deleteComentary: async (parent, args) => {
+      const deleteUser = await primsa.comentary.delete({
+        where: {
+          id: args.id,
+        },
+      });
+      return deleteUser;
+    },
   },
 };
 

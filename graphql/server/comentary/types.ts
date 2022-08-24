@@ -20,6 +20,7 @@ const comentaryTypes = gql`
       userID: ID
     ): Comentary
     updateComentary(id: String, comentaryText: String): Comentary
+    deleteComentary(id: String): Comentary
   }
 `;
 
