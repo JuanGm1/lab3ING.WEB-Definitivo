@@ -5,7 +5,8 @@ const comentaryTypes = gql`
     id: ID
     comentaryText: String
     destination: Destination
-    userID: ID
+    user: User
+    replies: [Reply]
   }
 
   type Query {
