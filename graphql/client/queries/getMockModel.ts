@@ -5,7 +5,6 @@ const GET_MOCK_MODEL = gql`
     mockModelGetter {
       id
       name
-      description
     }
   }
 `;
