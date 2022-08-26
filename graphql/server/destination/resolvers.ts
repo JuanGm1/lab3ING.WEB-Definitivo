@@ -1,8 +1,21 @@
 import { PrismaClient } from '@prisma/client';
+import { Resolver } from 'types';
 
 const prisma = new PrismaClient();
 
-const destinationResolvers = {
+const destinationResolvers: Resolver = {
+  Destination: {
+    comentaries: async (parent, args) => {
+      const comentaries = await prisma.comentary.findMany({
+        where: {
+          destinationId: {
+            equals: parent.id,
+          },
+        },
+      });
+      return comentaries;
+    },
+  },
   Query: {
     getDestinations: async () => {
       const destinations = await prisma.destination.findMany();
