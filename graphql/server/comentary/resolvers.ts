@@ -1,25 +1,41 @@
 import { PrismaClient } from '@prisma/client';
 
-const primsa = new PrismaClient();
+const prisma = new PrismaClient();
 
 const comentaryResolvers = {
   Comentary: {
     destination: async (parent, args) => {
-      const destination = await primsa.destination.findUnique({
+      const destination = await prisma.destination.findUnique({
         where: {
           id: parent.destinationId,
         },
       });
       return destination;
     },
+    user: async (parent, args) => {
+      const users = await prisma.user.findUnique({
+        where: {
+          id: parent.userId,
+        },
+      });
+      return users;
+    },
+    replies: async (parent, args) => {
+      const replies = await prisma.reply.findMany({
+        where: {
+          comentaryId: parent.id,
+        },
+      });
+      return replies;
+    },
   },
   Query: {
     getComentaries: async () => {
-      const comentaries = await primsa.comentary.findMany();
+      const comentaries = await prisma.comentary.findMany();
       return comentaries;
     },
     getComentary: async (parent, args) => {
-      const comentary = await primsa.comentary.findUnique({
+      const comentary = await prisma.comentary.findUnique({
         where: {
           id: args.id,
         },
@@ -29,7 +45,7 @@ const comentaryResolvers = {
   },
   Mutation: {
     createComentary: async (parent, args) => {
-      const comentary = await primsa.comentary.create({
+      const comentary = await prisma.comentary.create({
         data: {
           comentaryText: args.comentaryText,
           destinationId: args.destinationID,
@@ -39,7 +55,7 @@ const comentaryResolvers = {
       return comentary;
     },
     updateComentary: async (parent, args) => {
-      const updateComentary = await primsa.comentary.update({
+      const updateComentary = await prisma.comentary.update({
         where: {
           id: args.id,
         },
@@ -50,7 +66,7 @@ const comentaryResolvers = {
       return updateComentary;
     },
     deleteComentary: async (parent, args) => {
-      const deleteUser = await primsa.comentary.delete({
+      const deleteUser = await prisma.comentary.delete({
         where: {
           id: args.id,
         },
