@@ -4,6 +4,7 @@ const destinationTypes = gql`
   type Destination {
     id: ID
     name: String
+    comentaries: [Comentary]
   }
 
   type Query {

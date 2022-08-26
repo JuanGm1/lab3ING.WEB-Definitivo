@@ -14,9 +14,3 @@ export interface Resolver {
   Mutation: ResolverFunction;
   [key: string]: ResolverFunction;
 }
-
-export type MockModel = {
-  id: string;
-  name: string;
-  description: string;
-};

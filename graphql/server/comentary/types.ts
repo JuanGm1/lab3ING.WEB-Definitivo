@@ -4,7 +4,7 @@ const comentaryTypes = gql`
   type Comentary {
     id: ID
     comentaryText: String
-    destinationID: ID
+    destination: Destination
     userID: ID
   }
 

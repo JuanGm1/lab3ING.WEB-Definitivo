@@ -3,6 +3,16 @@ import { PrismaClient } from '@prisma/client';
 const primsa = new PrismaClient();
 
 const comentaryResolvers = {
+  Comentary: {
+    destination: async (parent, args) => {
+      const destination = await primsa.destination.findUnique({
+        where: {
+          id: parent.destinationId,
+        },
+      });
+      return destination;
+    },
+  },
   Query: {
     getComentaries: async () => {
       const comentaries = await primsa.comentary.findMany();
