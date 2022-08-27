@@ -35,6 +35,8 @@ const travelResolvers = {
         },
         data: {
           name: args.name,
+          startDate: new Date(args.startDate),
+          endDate: new Date(args.endDate),
         },
       });
       return updateTravel;

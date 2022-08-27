@@ -15,6 +15,24 @@ const destinationResolvers: Resolver = {
       });
       return comentaries;
     },
+    activities: async (parent, args) => {
+      const activities = await prisma.activity.findMany({
+        where: {
+          destinationId: {
+            equals: parent.id,
+          },
+        },
+      });
+      return activities;
+    },
+    budget: async (parent, args) => {
+      const budget = await prisma.budget.findUnique({
+        where: {
+          id: parent.destinationId,
+        },
+      });
+      return budget;
+    },
   },
   Query: {
     getDestinations: async () => {
@@ -35,6 +53,9 @@ const destinationResolvers: Resolver = {
       const destination = await prisma.destination.create({
         data: {
           name: args.name,
+          startDate: new Date(args.startDate),
+          endDate: new Date(args.endDate),
+          transportation: args.transportation,
         },
       });
       return destination;

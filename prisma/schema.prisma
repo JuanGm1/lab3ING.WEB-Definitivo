@@ -23,7 +23,7 @@ enum Enum_CategoryTipe {
   shopping
 }
 
-enum Enum_Roles{
+enum Enum_Roles {
   tripLeader
   guest
 }
@@ -62,14 +62,23 @@ model Destination {
   name           String
   startDate      DateTime
   endDate        DateTime
-  budget         Budget                  @relation(fields: [budgetId], references: [id])
-  budgetId       String                  @unique
-  transportation Enum_TransportationType
+  budget         Budget?
+  transportation Enum_TransportationType[]
   activities     Activity[]
   comentaries    Comentary[]
   users          DestinationsOnTravels[]
   createdAt      DateTime                @default(now())
   updatedAt      DateTime                @updatedAt
+}
+
+model Budget {
+  id            String      @id @default(cuid())
+  amount        Float
+  destination   Destination @relation(fields: [destinationId], references: [id])
+  destinationId String      @unique
+  entries       Entry[]
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
 }
 
 model Activity {
@@ -95,7 +104,6 @@ model Comentary {
   updatedAt     DateTime    @updatedAt
 }
 
-
 model Reply {
   id          String    @id @default(cuid())
   user        User      @relation(fields: [userId], references: [id])
@@ -120,24 +128,15 @@ model Like {
 model User {
   id          String           @id @default(cuid())
   name        String
-  rol       Enum_Roles
+  rol         Enum_Roles
   comentaries Comentary[]
   replies     Reply[]
   likes       Like[]
   travels     UsersOnTravels[]
   username    String           @unique
-  password    String           
+  password    String
   createdAt   DateTime         @default(now())
   updatedAt   DateTime         @updatedAt
-}
-
-model Budget {
-  id          String       @id @default(cuid())
-  amount      Float
-  destination Destination?
-  entries     Entry[]
-  createdAt   DateTime     @default(now())
-  updatedAt   DateTime     @updatedAt
 }
 
 model Entry {
