@@ -1,9 +1,12 @@
 import { gql } from 'apollo-server-micro';
 
 const travelTypes = gql`
+  scalar GraphQLDate
   type Travel {
     id: ID
     name: String
+    startDate: GraphQLDate
+    endDate: GraphQLDate
   }
 
   type Query {
@@ -12,7 +15,11 @@ const travelTypes = gql`
   }
 
   type Mutation {
-    createTravel(name: String): Travel
+    createTravel(
+      name: String
+      startDate: GraphQLDate
+      endDate: GraphQLDate
+    ): Travel
     updateTravel(id: String, name: String): Travel
   }
 `;

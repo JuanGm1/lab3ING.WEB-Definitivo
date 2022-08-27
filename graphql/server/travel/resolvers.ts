@@ -22,6 +22,8 @@ const travelResolvers = {
       const travel = await prisma.travel.create({
         data: {
           name: args.name,
+          startDate: new Date(args.startDate),
+          endDate: new Date(args.endDate),
         },
       });
       return travel;
