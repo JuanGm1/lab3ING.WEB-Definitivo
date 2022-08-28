@@ -24,6 +24,24 @@ const userResolvers = {
       });
       return replies;
     },
+    travels: async (parent, args) => {
+      const travels = await prisma.user.findUnique({
+        where: {
+          id: parent.id
+        },
+        select: {
+          travels: {
+            select: {
+              travel: true
+            }
+          },
+        }
+      });
+      const travels2 = travels.travels.map((t: any) => {
+        return t.travel
+      });
+      return travels2;
+    }
   },
   Query: {
     getUsers: async () => {

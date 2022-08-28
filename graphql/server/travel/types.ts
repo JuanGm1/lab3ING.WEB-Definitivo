@@ -7,6 +7,7 @@ const travelTypes = gql`
     name: String
     startDate: GraphQLDate
     endDate: GraphQLDate
+    users:[User]
   }
 
   type Query {
