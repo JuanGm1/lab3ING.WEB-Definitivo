@@ -11,6 +11,13 @@ const budgetResolvers = {
         },
       });
       return destination;
+    },  entries: async (parent, args) => {
+      const destination = await prisma.entry.findMany({
+        where: {
+          budgetId: parent.id,
+        }
+      });
+      return destination;
     },
   },
   Query: {

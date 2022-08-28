@@ -28,7 +28,7 @@ const destinationResolvers: Resolver = {
     budget: async (parent, args) => {
       const budget = await prisma.budget.findUnique({
         where: {
-          id: parent.destinationId,
+          destinationId: parent.id,
         },
       });
       return budget;

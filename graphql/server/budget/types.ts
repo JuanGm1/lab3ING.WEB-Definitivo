@@ -5,6 +5,7 @@ const budgetTypes = gql`
     id: ID
     amount: Float
     destination: Destination
+    entries:[Entry]
   }
 
   type Query {

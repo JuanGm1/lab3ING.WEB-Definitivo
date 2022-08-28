@@ -63,7 +63,7 @@ model Destination {
   startDate      DateTime
   endDate        DateTime
   budget         Budget?
-  transportation Enum_TransportationType[]
+  transportation Enum_TransportationType
   activities     Activity[]
   comentaries    Comentary[]
   users          DestinationsOnTravels[]

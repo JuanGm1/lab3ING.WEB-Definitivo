@@ -6,6 +6,7 @@ import userResolvers from '@graphql/server/user/resolvers';
 import replyResolvers from '@graphql/server/reply/resolvers';
 import activityResolvers from '@graphql/server/activity/resolvers';
 import budgetResolvers from '@graphql/server/budget/resolvers';
+import entryResolvers from '@graphql/server/entry/resolvers';
 
 const globalResolvers: Resolver[] = [
   comentaryResolvers,
@@ -15,6 +16,7 @@ const globalResolvers: Resolver[] = [
   replyResolvers,
   activityResolvers,
   budgetResolvers,
+  entryResolvers,
 ];
 
 export { globalResolvers };
