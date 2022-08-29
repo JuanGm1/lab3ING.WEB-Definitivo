@@ -5,23 +5,17 @@ const prisma = new PrismaClient();
 const travelResolvers = {
   Travel: {
     users: async (parent, args) => {
-      const users = await prisma.travel.findUnique({
+      const users = await prisma.user.findMany({
         where: {
-          id: parent.id
-        },
-        select: {
-          users: {
-            select: {
-              user: true
+          travels: {
+            some: {
+              travelId: parent.id
             }
-          },
+          }
         }
-      })
-      const users2 = await users.users.map((t: any) => {
-        return t.user
       });
-      return users2;
-    },
+      return users
+    }
   },
 
   Query: {

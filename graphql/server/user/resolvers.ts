@@ -25,22 +25,16 @@ const userResolvers = {
       return replies;
     },
     travels: async (parent, args) => {
-      const travels = await prisma.user.findUnique({
+      const travels = await prisma.travel.findMany({
         where: {
-          id: parent.id
-        },
-        select: {
-          travels: {
-            select: {
-              travel: true
+          users: {
+            some: {
+              userId: parent.id
             }
-          },
-        }
+          }
+        },
       });
-      const travels2 = travels.travels.map((t: any) => {
-        return t.travel
-      });
-      return travels2;
+      return travels
     }
   },
   Query: {
