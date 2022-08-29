@@ -3,9 +3,8 @@ import { gql } from 'apollo-server-micro';
 const budgetTypes = gql`
   type Budget {
     id: ID
-    amount: Float
     destination: Destination
-    entries:[Entry]
+    entries: [Entry]
   }
 
   type Query {
@@ -13,7 +12,7 @@ const budgetTypes = gql`
   }
 
   type Mutation {
-    createBudget(amount: Float, destinationID: ID): Budget
+    createBudget(destinationID: ID): Budget
   }
 `;
 

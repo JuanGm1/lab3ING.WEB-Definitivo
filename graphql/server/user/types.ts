@@ -7,7 +7,7 @@ const userTypes = gql`
     username: String
     comentaries: [Comentary]
     replies: [Reply]
-    travels:[Travel]
+    travels: [Travel]
   }
 
   type Query {

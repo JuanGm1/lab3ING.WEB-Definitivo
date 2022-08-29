@@ -1,8 +1,7 @@
-import { PrismaClient } from '@prisma/client';
+import prisma from '@config/prisma';
+import { Resolver } from 'types';
 
-const prisma = new PrismaClient();
-
-const userResolvers = {
+const userResolvers: Resolver = {
   User: {
     comentaries: async (parent, args) => {
       const comentaries = await prisma.comentary.findMany({

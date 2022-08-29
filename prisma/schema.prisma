@@ -73,7 +73,6 @@ model Destination {
 
 model Budget {
   id            String      @id @default(cuid())
-  amount        Float
   destination   Destination @relation(fields: [destinationId], references: [id])
   destinationId String      @unique
   entries       Entry[]
@@ -140,11 +139,11 @@ model User {
 }
 
 model Entry {
-  id            String            @id @default(cuid())
-  budgetEntries Int
-  budget        Budget            @relation(fields: [budgetId], references: [id])
-  budgetId      String
-  category      Enum_CategoryTipe
-  createdAt     DateTime          @default(now())
-  updatedAt     DateTime          @updatedAt
+  id        String            @id @default(cuid())
+  budget    Budget            @relation(fields: [budgetId], references: [id])
+  budgetId  String
+  amount    Float
+  category  Enum_CategoryTipe
+  createdAt DateTime          @default(now())
+  updatedAt DateTime          @updatedAt
 }

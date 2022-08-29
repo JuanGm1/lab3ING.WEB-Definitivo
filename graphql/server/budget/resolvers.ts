@@ -1,8 +1,7 @@
-import { PrismaClient } from '@prisma/client';
+import prisma from '@config/prisma';
+import { Resolver } from 'types';
 
-const prisma = new PrismaClient();
-
-const budgetResolvers = {
+const budgetResolvers: Resolver = {
   Budget: {
     destination: async (parent, args) => {
       const destination = await prisma.destination.findUnique({
@@ -11,11 +10,12 @@ const budgetResolvers = {
         },
       });
       return destination;
-    },  entries: async (parent, args) => {
+    },
+    entries: async (parent, args) => {
       const destination = await prisma.entry.findMany({
         where: {
           budgetId: parent.id,
-        }
+        },
       });
       return destination;
     },

@@ -1,19 +1,17 @@
-
 import { gql } from 'apollo-server-micro';
 
 const entryTypes = gql`
-enum Enum_CategoryTipe {
+  enum Enum_CategoryTipe {
     food
     entretainment
     transportation
     shopping
   }
 
-  
   type Entry {
-    id: String           
-    budgetEntries: Int
-    budget: Budget           
+    id: String
+    budget: Budget
+    amount: Float
     category: Enum_CategoryTipe
   }
 
@@ -23,19 +21,14 @@ enum Enum_CategoryTipe {
   }
 
   type Mutation {
-    createEntry(
-        budgetEntries: Int
-        budgetID: ID           
-        category: Enum_CategoryTipe
-    ): Entry
+    createEntry(amount: Float, budgetID: ID, category: Enum_CategoryTipe): Entry
     updateEntry(
-        id: String
-        budgetEntries: Int
-        budgetID: ID           
-        category: Enum_CategoryTipe
+      id: String
+      amount: Float
+      budgetID: ID
+      category: Enum_CategoryTipe
     ): Entry
     deleteEntry(id: String): Entry
-
   }
 `;
 

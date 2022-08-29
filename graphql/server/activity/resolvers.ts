@@ -1,8 +1,7 @@
-import { PrismaClient } from '@prisma/client';
+import prisma from '@config/prisma';
+import { Resolver } from 'types';
 
-const prisma = new PrismaClient();
-
-const activityResolvers = {
+const activityResolvers: Resolver = {
   Activity: {
     destination: async (parent, args) => {
       const destination = await prisma.destination.findUnique({
