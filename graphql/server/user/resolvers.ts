@@ -29,13 +29,13 @@ const userResolvers = {
         where: {
           users: {
             some: {
-              userId: parent.id
-            }
-          }
+              userId: parent.id,
+            },
+          },
         },
       });
-      return travels
-    }
+      return travels;
+    },
   },
   Query: {
     getUsers: async () => {

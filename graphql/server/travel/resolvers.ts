@@ -9,13 +9,13 @@ const travelResolvers = {
         where: {
           travels: {
             some: {
-              travelId: parent.id
-            }
-          }
-        }
+              travelId: parent.id,
+            },
+          },
+        },
       });
-      return users
-    }
+      return users;
+    },
   },
 
   Query: {
