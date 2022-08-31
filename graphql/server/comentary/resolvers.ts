@@ -65,12 +65,12 @@ const comentaryResolvers: Resolver = {
       return updateComentary;
     },
     deleteComentary: async (parent, args) => {
-      const deleteUser = await prisma.comentary.delete({
+      const deleteComentary = await prisma.comentary.delete({
         where: {
           id: args.id,
         },
       });
-      return deleteUser;
+      return deleteComentary;
     },
   },
 };

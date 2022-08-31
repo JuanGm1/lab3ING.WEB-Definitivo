@@ -7,12 +7,18 @@ const travelTypes = gql`
     name: String
     startDate: GraphQLDate
     endDate: GraphQLDate
-    users:[User]
+    users: [User]
+  }
+
+  type UsersOnTravels {
+    userId: ID
+    travelId: ID
   }
 
   type Query {
     getTravels: [Travel]
     getTravel(id: ID): Travel
+    getUsersTravel(id: ID): Int
   }
 
   type Mutation {
@@ -21,7 +27,15 @@ const travelTypes = gql`
       startDate: GraphQLDate
       endDate: GraphQLDate
     ): Travel
-    updateTravel(id: String, name: String): Travel
+    updateTravel(
+      id: ID
+      name: String
+      startDate: GraphQLDate
+      endDate: GraphQLDate
+    ): Travel
+    deleteTravel(id: String): Travel
+    addUserOnTravel(userId: String, travelId: String): UsersOnTravels
+    deleteUserOnTravel(userId: String, travelId: String): UsersOnTravels
   }
 `;
 

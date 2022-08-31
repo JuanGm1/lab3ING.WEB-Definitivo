@@ -67,9 +67,20 @@ const destinationResolvers: Resolver = {
         },
         data: {
           name: args.name,
+          startDate: new Date(args.startDate),
+          endDate: new Date(args.endDate),
+          transportation: args.transportation,
         },
       });
       return updateDestination;
+    },
+    deleteDestination: async (parent, args) => {
+      const deleteDestination = await prisma.destination.delete({
+        where: {
+          id: args.id,
+        },
+      });
+      return deleteDestination;
     },
   },
 };

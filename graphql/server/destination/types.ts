@@ -30,7 +30,14 @@ const destinationTypes = gql`
       endDate: GraphQLDate
       transportation: Enum_TransportationType
     ): Destination
-    updateDestination(id: ID, name: String): Destination
+    updateDestination(
+      id: ID
+      name: String
+      startDate: GraphQLDate
+      endDate: GraphQLDate
+      transportation: Enum_TransportationType
+    ): Destination
+    deleteDestination(id: ID): Destination
   }
 `;
 
