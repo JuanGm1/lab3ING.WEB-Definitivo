@@ -7,14 +7,19 @@ const travelTypes = gql`
     name: String
     startDate: GraphQLDate
     endDate: GraphQLDate
+    destinations: [Destination]
     users: [User]
+  }
+
+  type DestinationsOnTravels {
+    destinationId: ID
+    travelId: ID
   }
 
   type UsersOnTravels {
     userId: ID
     travelId: ID
   }
-
   type Query {
     getTravels: [Travel]
     getTravel(id: ID): Travel
@@ -34,8 +39,16 @@ const travelTypes = gql`
       endDate: GraphQLDate
     ): Travel
     deleteTravel(id: String): Travel
-    addUserOnTravel(userId: String, travelId: String): UsersOnTravels
-    deleteUserOnTravel(userId: String, travelId: String): UsersOnTravels
+    addDestinationsOnTravel(
+      travelId: String
+      destinationId: String
+    ): DestinationsOnTravels
+    addUserOnTravel(travelId: String, userId: String): UsersOnTravels
+    deleteUserOnTravel(travelId: String, userId: String): UsersOnTravels
+    deleteDestinationsOnTravel(
+      travelId: String
+      destinationId: String
+    ): DestinationsOnTravels
   }
 `;
 

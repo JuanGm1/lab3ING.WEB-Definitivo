@@ -66,7 +66,7 @@ model Destination {
   transportation Enum_TransportationType
   activities     Activity[]
   comentaries    Comentary[]
-  users          DestinationsOnTravels[]
+  travels        DestinationsOnTravels[]
   createdAt      DateTime                @default(now())
   updatedAt      DateTime                @updatedAt
 }

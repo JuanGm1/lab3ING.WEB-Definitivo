@@ -14,6 +14,7 @@ const destinationTypes = gql`
     endDate: GraphQLDate
     transportation: Enum_TransportationType
     budget: Budget
+    travels: [Travel]
     comentaries: [Comentary]
     activities: [Activity]
   }

@@ -33,6 +33,18 @@ const destinationResolvers: Resolver = {
       });
       return budget;
     },
+    travels: async (parent, args) => {
+      const travels = await prisma.travel.findMany({
+        where: {
+          destinations: {
+            some: {
+              destinationId: parent.id,
+            },
+          },
+        },
+      });
+      return travels;
+    },
   },
   Query: {
     getDestinations: async () => {
