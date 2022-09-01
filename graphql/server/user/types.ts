@@ -15,6 +15,7 @@ const userTypes = gql`
     comentaries: [Comentary]
     replies: [Reply]
     travels: [Travel]
+    likes:[Like]
   }
 
   type Query {

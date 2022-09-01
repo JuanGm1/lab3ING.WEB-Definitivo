@@ -7,6 +7,7 @@ import { replyTypes } from '@graphql/server/reply/types';
 import { activityTypes } from '@graphql/server/activity/types';
 import { budgetTypes } from '@graphql/server/budget/types';
 import { entryTypes } from '@graphql/server/entry/types';
+import { likeTypes } from '@graphql/server/like/types';
 
 // const CommonTypes = gql``;
 
@@ -19,6 +20,7 @@ const globalTypes = [
   activityTypes,
   budgetTypes,
   entryTypes,
+  likeTypes,
 ];
 
 export { globalTypes };

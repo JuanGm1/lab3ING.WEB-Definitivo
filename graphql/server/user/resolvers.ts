@@ -34,6 +34,13 @@ const userResolvers: Resolver = {
         },
       });
       return travels;
+    }, likes: async (parent, args) => {
+      const likes = await prisma.like.findMany({
+        where: {
+          userId: parent.id,
+        },
+      });
+      return likes;
     },
   },
   Query: {

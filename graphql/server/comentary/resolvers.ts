@@ -26,6 +26,13 @@ const comentaryResolvers: Resolver = {
         },
       });
       return replies;
+    }, likes: async (parent, args) => {
+      const likes = await prisma.like.findMany({
+        where: {
+          comentaryId: parent.id,
+        },
+      });
+      return likes;
     },
   },
   Query: {

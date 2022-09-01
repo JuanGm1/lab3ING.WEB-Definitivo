@@ -7,6 +7,7 @@ const comentaryTypes = gql`
     destination: Destination
     user: User
     replies: [Reply]
+    likes:[Like]
   }
 
   type Query {
