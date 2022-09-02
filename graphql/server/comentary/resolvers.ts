@@ -1,8 +1,7 @@
-import { PrismaClient } from '@prisma/client';
+import prisma from '@config/prisma';
+import { Resolver } from 'types';
 
-const prisma = new PrismaClient();
-
-const comentaryResolvers = {
+const comentaryResolvers: Resolver = {
   Comentary: {
     destination: async (parent, args) => {
       const destination = await prisma.destination.findUnique({
@@ -27,6 +26,13 @@ const comentaryResolvers = {
         },
       });
       return replies;
+    }, likes: async (parent, args) => {
+      const likes = await prisma.like.findMany({
+        where: {
+          comentaryId: parent.id,
+        },
+      });
+      return likes;
     },
   },
   Query: {
@@ -66,12 +72,12 @@ const comentaryResolvers = {
       return updateComentary;
     },
     deleteComentary: async (parent, args) => {
-      const deleteUser = await prisma.comentary.delete({
+      const deleteComentary = await prisma.comentary.delete({
         where: {
           id: args.id,
         },
       });
-      return deleteUser;
+      return deleteComentary;
     },
   },
 };

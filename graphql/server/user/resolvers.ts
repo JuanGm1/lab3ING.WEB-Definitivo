@@ -1,8 +1,7 @@
-import { PrismaClient } from '@prisma/client';
+import prisma from '@config/prisma';
+import { Resolver } from 'types';
 
-const prisma = new PrismaClient();
-
-const userResolvers = {
+const userResolvers: Resolver = {
   User: {
     comentaries: async (parent, args) => {
       const comentaries = await prisma.comentary.findMany({
@@ -24,6 +23,25 @@ const userResolvers = {
       });
       return replies;
     },
+    travels: async (parent, args) => {
+      const travels = await prisma.travel.findMany({
+        where: {
+          users: {
+            some: {
+              userId: parent.id,
+            },
+          },
+        },
+      });
+      return travels;
+    }, likes: async (parent, args) => {
+      const likes = await prisma.like.findMany({
+        where: {
+          userId: parent.id,
+        },
+      });
+      return likes;
+    },
   },
   Query: {
     getUsers: async () => {
@@ -40,6 +58,17 @@ const userResolvers = {
     },
   },
   Mutation: {
+    createUser: async (parent, args) => {
+      const user = await prisma.user.create({
+        data: {
+          name: args.name,
+          username: args.username,
+          password: args.password,
+          rol: args.rol,
+        },
+      });
+      return user;
+    },
     updateUser: async (parent, args) => {
       const updateUser = await prisma.user.update({
         where: {
