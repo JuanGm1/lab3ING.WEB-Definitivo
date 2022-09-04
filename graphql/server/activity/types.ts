@@ -14,11 +14,13 @@ const activityTypes = gql`
   }
 
   type Mutation {
-    createActivity(
+      createActivity(
       description: String
       activityDate: GraphQLDate
       destinationID: ID
     ): Activity
+    deleteActivity(id: ID): Activity
+    updateActivity(description: String, activityDate: GraphQLDate, id: ID): Activity
   }
 `;
 

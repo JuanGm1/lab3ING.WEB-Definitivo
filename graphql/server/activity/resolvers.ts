@@ -29,6 +29,26 @@ const activityResolvers: Resolver = {
       });
       return activity;
     },
+    deleteActivity: async (parent, args) => {
+      const activity = await prisma.activity.delete({
+        where: {
+          id: args.id,
+        },
+      });
+      return activity;
+    },
+    updateActivity: async (parent, args) => {
+      const activity = await prisma.activity.update({
+        where: {
+          id: args.id,
+        },
+        data: {
+          description: args.description,
+          activityDate: new Date(args.activityDate),
+        },
+      });
+      return activity;
+    }
   },
 };
 

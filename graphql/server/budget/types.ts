@@ -9,10 +9,13 @@ const budgetTypes = gql`
 
   type Query {
     getBudgets: [Budget]
+    getBudget: Budget
   }
 
   type Mutation {
     createBudget(destinationID: ID): Budget
+    deleteBudget(id: ID): Budget
+    updateBudget(destinationID: ID, id: ID): Budget
   }
 `;
 
