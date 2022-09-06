@@ -42,6 +42,17 @@ const travelResolvers: Resolver = {
       });
       return conteo;
     },
+    getUserTravel: async (parent, args) => {
+      const travel = await prisma.usersOnTravels.findUnique({
+        where: {
+          travelId_userId: {
+            travelId: args.travelId,
+            userId: args.userId,
+          },
+        },
+      });
+      return travel;
+    },
     getTravel: async (parent, args) => {
       const travel = await prisma.travel.findUnique({
         where: {
@@ -111,6 +122,21 @@ const travelResolvers: Resolver = {
         },
       });
       return user;
+    },
+    updateUserOnTravel: async (parent, args) => {
+      const updateUT = await prisma.usersOnTravels.update({
+        where: {
+          travelId_userId: {
+            travelId: args.travelId,
+            userId: args.userId,
+          },
+        },
+        data: {
+          userId: args.newuserId,
+          travelId: args.newtravelId,
+        }
+      });
+      return updateUT;
     },
     deleteUserOnTravel: async (parent, args) => {
       const user = await prisma.usersOnTravels.delete({

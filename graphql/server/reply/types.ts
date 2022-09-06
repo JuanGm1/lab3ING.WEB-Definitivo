@@ -15,6 +15,7 @@ const replyTypes = gql`
   type Mutation {
     createReply(replyText: String, comentaryId: ID, userId: ID): Reply
     updateReply(id: ID, replyText: String): Reply
+    deleteReply(id: ID): Reply
   }
 `;
 

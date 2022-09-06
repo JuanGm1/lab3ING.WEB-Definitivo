@@ -49,6 +49,14 @@ const replyResolvers: Resolver = {
       });
       return updateReply;
     },
+    deleteReply: async (parent, args) => {
+      const deleteRe = await prisma.reply.delete({
+        where: {
+          id: args.id,
+        },
+      });
+      return deleteRe;
+    },
   },
 };
 
