@@ -34,24 +34,13 @@ const travelResolvers: Resolver = {
       const travels = await prisma.travel.findMany();
       return travels;
     },
-    getUsersTravel: async (parent, args) => {
-      const conteo = await prisma.usersOnTravels.count({
+    getCountUsersOnTravel: async (parent, args) => {
+      const count = await prisma.usersOnTravels.count({
         where: {
           travelId: args.id,
         },
       });
-      return conteo;
-    },
-    getUserTravel: async (parent, args) => {
-      const travel = await prisma.usersOnTravels.findUnique({
-        where: {
-          travelId_userId: {
-            travelId: args.travelId,
-            userId: args.userId,
-          },
-        },
-      });
-      return travel;
+      return count;
     },
     getTravel: async (parent, args) => {
       const travel = await prisma.travel.findUnique({
@@ -134,9 +123,24 @@ const travelResolvers: Resolver = {
         data: {
           userId: args.newuserId,
           travelId: args.newtravelId,
-        }
+        },
       });
       return updateUT;
+    },
+    updateDestinationsOnTravel: async (parent, args) => {
+      const updateDT = await prisma.destinationsOnTravels.update({
+        where: {
+          travelId_destinationId: {
+            travelId: args.travelId,
+            destinationId: args.destinationId,
+          },
+        },
+        data: {
+          destinationId: args.newdestinationId,
+          travelId: args.newtravelId,
+        },
+      });
+      return updateDT;
     },
     deleteUserOnTravel: async (parent, args) => {
       const user = await prisma.usersOnTravels.delete({

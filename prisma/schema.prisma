@@ -18,7 +18,7 @@ enum Enum_TransportationType {
 
 enum Enum_CategoryTipe {
   food
-  entretaiment
+  entertainment
   transportation
   shopping
 }
@@ -132,8 +132,6 @@ model User {
   replies     Reply[]
   likes       Like[]
   travels     UsersOnTravels[]
-  username    String           @unique
-  password    String
   createdAt   DateTime         @default(now())
   updatedAt   DateTime         @updatedAt
 }

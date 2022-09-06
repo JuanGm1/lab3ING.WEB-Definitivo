@@ -32,7 +32,7 @@ const entryResolvers: Resolver = {
         data: {
           budgetId: args.budgetID,
           category: args.category,
-          budgetEntries: args.budgetEntries,
+          amount: args.amount,
         },
       });
       return entry;
@@ -45,7 +45,7 @@ const entryResolvers: Resolver = {
         data: {
           budgetId: args.budgetID,
           category: args.category,
-          budgetEntries: args.budgetEntries,
+          amount: args.amount,
         },
       });
       return entry;
