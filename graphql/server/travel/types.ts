@@ -23,11 +23,7 @@ const travelTypes = gql`
   type Query {
     getTravels: [Travel]
     getTravel(id: ID): Travel
-    getUsersTravel(id: ID): Int
-    getUserTravel(
-      travelId: String
-      userId: String
-    ): UsersOnTravels
+    getCountUsersOnTravel(id: ID): Int
   }
 
   type Mutation {
@@ -55,6 +51,12 @@ const travelTypes = gql`
     ): DestinationsOnTravels
     addUserOnTravel(travelId: String, userId: String): UsersOnTravels
     deleteUserOnTravel(travelId: String, userId: String): UsersOnTravels
+    updateDestinationsOnTravel(
+      travelId: String
+      destinationId: String
+      newtravelId: String
+      newdestinationId: String
+    ): DestinationsOnTravels
     deleteDestinationsOnTravel(
       travelId: String
       destinationId: String

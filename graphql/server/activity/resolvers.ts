@@ -17,6 +17,14 @@ const activityResolvers: Resolver = {
       const activities = await prisma.activity.findMany();
       return activities;
     },
+    getActivity: async (parent, args) => {
+      const activity = await prisma.activity.findUnique({
+        where: {
+          id: args.id,
+        },
+      });
+      return activity;
+    },
   },
   Mutation: {
     createActivity: async (parent, args) => {
@@ -43,12 +51,13 @@ const activityResolvers: Resolver = {
           id: args.id,
         },
         data: {
+          destinationId: args.destinationID,
           description: args.description,
           activityDate: new Date(args.activityDate),
         },
       });
       return activity;
-    }
+    },
   },
 };
 

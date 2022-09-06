@@ -26,6 +26,14 @@ const replyResolvers: Resolver = {
       const replies = await prisma.reply.findMany();
       return replies;
     },
+    getReply: async (parent, args) => {
+      const reply = await prisma.reply.findUnique({
+        where: {
+          id: args.id,
+        },
+      });
+      return reply;
+    },
   },
   Mutation: {
     createReply: async (parent, args) => {
