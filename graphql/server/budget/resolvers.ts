@@ -25,6 +25,14 @@ const budgetResolvers: Resolver = {
       const budgets = await prisma.budget.findMany();
       return budgets;
     },
+    getBudget: async (parent, args) => {
+      const budget = await prisma.budget.findUnique({
+        where: {
+          id: args.id,
+        },
+      });
+      return budget;
+    }
   },
   Mutation: {
     createBudget: async (parent, args) => {
@@ -36,6 +44,26 @@ const budgetResolvers: Resolver = {
       });
       return budget;
     },
+    deleteBudget: async (parent, args) => {
+      const budget = await prisma.budget.delete({
+        where: {
+          id: args.id,
+        },
+      });
+      return budget;
+    },
+    updateBudget: async (parent, args) => {
+      const budget = await prisma.budget.update({
+        where: {
+          id: args.id,
+        },
+        data: {
+          amount: args.amount,
+          destinationId: args.destinationID,
+        },
+      });
+      return budget;
+    }
   },
 };
 
