@@ -7,7 +7,7 @@ const Home: NextPage = () => (
   
   <div>
         <React.StrictMode>
-    <EditDestination id={"cl8paids20000xsjhow36zay5"}/>
+    <EditDestination id={"cl8q4zh4f0395awjh7nnio8fb"}/>
     </React.StrictMode>
   </div>
 );

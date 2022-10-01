@@ -11,22 +11,23 @@ const EditDestination: NextPage = ({ id }) => {
     const [name, setName] = useState("");
     const [startDate, setStartDate] = useState("");
     const [endDate, setEndDate] = useState("");
+    const [transportType, setTransportType] = useState("land");
 
     const { data, loading } = useQuery(GET_DESTINATION, {
         variables: {
-            getTravelId: destinationId,
+            getDestinationId: destinationId,
         }, fetchPolicy: 'no-cache',
     });
 
     useEffect(() => {
         if (!loading) {
-            setName(data.getTravel.name)
-            const sdYear = data.getTravel.startDate.substring(0, 4) + "-"
-            const sdMonth = data.getTravel.startDate.substring(5, 7) + "-"
-            const sdDay = data.getTravel.startDate.substring(8, 10)
-            const edYear = data.getTravel.endDate.substring(0, 4) + "-"
-            const edMonth = data.getTravel.endDate.substring(5, 7) + "-"
-            const edDay = data.getTravel.endDate.substring(8, 10)
+            setName(data.getDestination.name)
+            const sdYear = data.getDestination.startDate.substring(0, 4) + "-"
+            const sdMonth = data.getDestination.startDate.substring(5, 7) + "-"
+            const sdDay = data.getDestination.startDate.substring(8, 10)
+            const edYear = data.getDestination.endDate.substring(0, 4) + "-"
+            const edMonth = data.getDestination.endDate.substring(5, 7) + "-"
+            const edDay = data.getDestination.endDate.substring(8, 10)
             setStartDate(sdYear + sdMonth + sdDay)
             setEndDate(edYear + edMonth + edDay)
         }
@@ -55,6 +56,7 @@ const EditDestination: NextPage = ({ id }) => {
                     name: name,
                     startDate: startDate,
                     endDate: endDate,
+                    transportation:transportType
                 },
             });
         } else {
@@ -79,9 +81,14 @@ const EditDestination: NextPage = ({ id }) => {
     return (
         <div>
 
-            <h1>Travel</h1>
+            <h1>Destination</h1>
             <input value={name} name="firstName" onChange={e => setName(e.target.value)} />
             <span>Fecha Inicio: </span>
+            <select onChange={e =>setTransportType(e.target.value)}>
+        <option>land</option>
+        <option>maritime</option>
+        <option>aerial</option>
+     </select>
             <input placeholder='Fecha inicio' name='startDate' type='date' value={startDate} onChange={e => setStartDate(e.target.value)} />
             <input placeholder='Fecha fin' name='endDate' type='date' value={endDate} onChange={e => setEndDate(e.target.value)} />
             <button type='submit' className='border-2 ml-4' onClick={call}>

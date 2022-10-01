@@ -1,12 +1,15 @@
 import { gql } from '@apollo/client';
 
 const GET_DESTINATION = gql`
-query getDestination(id: $getDestinationId) {
+
+query getDestination($getDestinationId: ID) {
+  getDestination(id: $getDestinationId) {
     name
     startDate
     endDate
     transportation
   }
+}
 
 `;
 
