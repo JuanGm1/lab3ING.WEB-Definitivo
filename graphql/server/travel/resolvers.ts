@@ -42,7 +42,7 @@ const travelResolvers: Resolver = {
       });
       return count;
     },
-    getTravel: async (parent, args) => {
+    getTravel: async (parent, args) => {   
       const travel = await prisma.travel.findUnique({
         where: {
           id: args.id,
@@ -53,8 +53,6 @@ const travelResolvers: Resolver = {
   },
   Mutation: {
     createTravel: async (parent, args) => {
-      console.log("--------------------------------------------------------------------------------")
-      console.log(args)
       const travel = await prisma.travel.create({
         data: {
           name: args.name,

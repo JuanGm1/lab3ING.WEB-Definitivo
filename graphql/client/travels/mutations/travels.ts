@@ -9,5 +9,14 @@ const CREATE_TRAVEL = gql`
   }
 }
 `;
+const UPDATE_TRAVEL = gql`
+  mutation createTravel($name: String, $startDate: GraphQLDate, $endDate: GraphQLDate) {
+    createTravel(name: $name, startDate: $startDate, endDate: $endDate) {
+    name
+    startDate
+    endDate
+  }
+}
+`;
 
-export default CREATE_TRAVEL;
+export {CREATE_TRAVEL,UPDATE_TRAVEL};

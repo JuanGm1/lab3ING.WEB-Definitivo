@@ -1,9 +1,9 @@
 import { NextPage } from 'next/types';
-import Travel from '@pages/travel';
+import EditTravel from '@pages/travel/EditTravel';
 
 const Home: NextPage = () => (
   <div>
-    <Travel />
+    <EditTravel id={"cl8pzwjd70007wwjhsxijivn9"}/>
   </div>
 );
 
