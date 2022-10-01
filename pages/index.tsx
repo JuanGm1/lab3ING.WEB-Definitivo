@@ -1,9 +1,14 @@
 import { NextPage } from 'next/types';
 import EditTravel from '@pages/travel/EditTravel';
+import React from 'react';
+import EditDestination from '@pages/destination/EditDestination';
 
 const Home: NextPage = () => (
+  
   <div>
-    <EditTravel id={"cl8pzwjd70007wwjhsxijivn9"}/>
+        <React.StrictMode>
+    <EditDestination id={"cl8paids20000xsjhow36zay5"}/>
+    </React.StrictMode>
   </div>
 );
 

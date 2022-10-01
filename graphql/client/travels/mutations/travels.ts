@@ -10,13 +10,21 @@ const CREATE_TRAVEL = gql`
 }
 `;
 const UPDATE_TRAVEL = gql`
-  mutation createTravel($name: String, $startDate: GraphQLDate, $endDate: GraphQLDate) {
-    createTravel(name: $name, startDate: $startDate, endDate: $endDate) {
+mutation updateTravel($updateTravelId: ID, $name: String, $startDate: GraphQLDate, $endDate: GraphQLDate) {
+  updateTravel(id: $updateTravelId, name: $name, startDate: $startDate, endDate: $endDate) {
     name
-    startDate
-    endDate
+  }
+}
+
+`;
+const DELETE_TRAVEL = gql`
+mutation deleteTravel($deleteTravelId: String) {
+  deleteTravel(id: $deleteTravelId) {
+    name
   }
 }
 `;
 
-export {CREATE_TRAVEL,UPDATE_TRAVEL};
+
+
+export {CREATE_TRAVEL,UPDATE_TRAVEL,DELETE_TRAVEL};

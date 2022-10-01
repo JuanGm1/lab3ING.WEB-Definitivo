@@ -1,20 +1,20 @@
 import { NextPage } from 'next/types';
 import { useMutation, useQuery } from '@apollo/client';
 import { SyntheticEvent, useEffect, useState } from 'react';
-import { UPDATE_TRAVEL, DELETE_TRAVEL } from '@graphql/client/travels/mutations/travels';
-import GET_TRAVEL from '@graphql/client/travels/queries/travels';
-const EditTravel: NextPage = ({ id }) => {
-    const travelId = id;
-    const [updateTravel] = useMutation(UPDATE_TRAVEL);
-    const [deleteTravel] = useMutation(DELETE_TRAVEL);
+import { UPDATE_DESTINATION,DELETE_DESTINATION } from '@graphql/client/destinations/mutations/destinations';
+import GET_DESTINATION from '@graphql/client/destinations/queries/destinations';
+const EditDestination: NextPage = ({ id }) => {
+    const destinationId = id;
+    const [updateDestination] = useMutation(UPDATE_DESTINATION);
+    const [deleteDestination] = useMutation(DELETE_DESTINATION);
 
     const [name, setName] = useState("");
     const [startDate, setStartDate] = useState("");
     const [endDate, setEndDate] = useState("");
 
-    const { data, loading } = useQuery(GET_TRAVEL, {
+    const { data, loading } = useQuery(GET_DESTINATION, {
         variables: {
-            getTravelId: travelId,
+            getTravelId: destinationId,
         }, fetchPolicy: 'no-cache',
     });
 
@@ -49,9 +49,9 @@ const EditTravel: NextPage = ({ id }) => {
 
 
         if (correctDates && correctFuture) {
-            await updateTravel({
+            await updateDestination({
                 variables: {
-                    updateTravelId: travelId,
+                    updateDestinationId: destinationId,
                     name: name,
                     startDate: startDate,
                     endDate: endDate,
@@ -69,9 +69,9 @@ const EditTravel: NextPage = ({ id }) => {
 
         e.preventDefault();
 
-        await deleteTravel({
+        await deleteDestination({
             variables: {
-                deleteTravelId: travelId,
+                deleteDestinationId: destinationId,
             },
         });
     };
@@ -95,4 +95,4 @@ const EditTravel: NextPage = ({ id }) => {
     );
 };
 
-export default EditTravel;
+export default EditDestination;
