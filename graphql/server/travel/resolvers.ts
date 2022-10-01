@@ -53,6 +53,8 @@ const travelResolvers: Resolver = {
   },
   Mutation: {
     createTravel: async (parent, args) => {
+      console.log("--------------------------------------------------------------------------------")
+      console.log(args)
       const travel = await prisma.travel.create({
         data: {
           name: args.name,

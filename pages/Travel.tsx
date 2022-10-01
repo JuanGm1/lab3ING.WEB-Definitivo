@@ -1,18 +1,25 @@
-import GET_USERS from '@graphql/client/users/queries/users';
 import { NextPage } from 'next/types';
 import { useMutation, useQuery } from '@apollo/client';
-import { SyntheticEvent, useEffect } from 'react';
-import CREATE_USERS from '@graphql/client/users/mutations/users';
+import { SyntheticEvent, useEffect, useState } from 'react';
+import CREATE_TRAVEL from '@graphql/client/users/mutations/travels';
 
 const Travel: NextPage = () => {
-  const [createUser] = useMutation(CREATE_USERS);
+  const [createTravel] = useMutation(CREATE_TRAVEL);
+  const [name,setName]=useState("");
+  const [startDate,setStartDate]=useState("");
+  const [endDate,setEndDate]=useState("");
+
+
+
   const call = async (e: SyntheticEvent) => {
+
     e.preventDefault();
-    await createUser({
+  
+    await createTravel({
       variables: {
-        name: 'test',
-        starDate: '2021-01-01',
-        endDate: '2021-01-01',
+        name:name ,
+        startDate: startDate,
+        endDate: endDate,
       },
     });
   };
@@ -21,10 +28,11 @@ const Travel: NextPage = () => {
     <div>
       <form onSubmit={call}>
         <h1>Travel</h1>
-        <input placeholder='Nombre' name='nombre' type='text' />
+        <input value={name}   name="firstName" onChange={e => setName(e.target.value)} />
+
         <span>Fecha Inicio: </span>
-        <input placeholder='Fecha inicio' name='fecha1' type='date' />
-        <input placeholder='Fecha fin' name='fecha2' type='date' />
+        <input placeholder='Fecha inicio' name='startDate' type='date' value={startDate} onChange={e => setStartDate(e.target.value)}/>
+        <input placeholder='Fecha fin' name='endDate' type='date'value={endDate} onChange={e => setEndDate(e.target.value)}/>
         <button type='submit' className='border-2 ml-4'>
           enviar
         </button>
