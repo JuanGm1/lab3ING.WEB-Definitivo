@@ -1,7 +1,7 @@
 import React from 'react';
 
 const MyComponent = () => (
-  <div className='p-10'>
+  <div>
     <h1>Data fetched with GraphQL</h1>
   </div>
 );
