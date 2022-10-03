@@ -5,13 +5,15 @@ import { ApolloProvider } from '@apollo/client';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import 'styles/globals.css';
+import React from "react";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 const MyApp = ({ Component, pageProps: { ...pageProps } }: AppProps) => {
   const { client } = useApolloClient();
   return (
     <>
       <Head>
-        <title>Page Name</title>
+        <title>Travels</title>
         <meta name='description' content='content' />
         <link rel='icon' href='/favicon.ico' />
       </Head>

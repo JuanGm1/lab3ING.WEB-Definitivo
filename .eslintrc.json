@@ -12,24 +12,41 @@
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "project": "tsconfig.json",
+    "project": [
+      "tsconfig.json"
+    ],
     "ecmaFeatures": {
       "jsx": true
     },
     "ecmaVersion": 12,
     "sourceType": "module"
   },
-  "plugins": ["react", "@typescript-eslint", "prettier", "typescript"],
+  "plugins": [
+    "react",
+    "@typescript-eslint",
+    "prettier",
+    "typescript"
+  ],
   "rules": {
     "jsx-a11y/media-has-caption": "off",
     "no-restricted-imports": [
       "error",
       {
-        "patterns": [".*"]
+        "patterns": [
+          ".*"
+        ]
       }
     ],
     "prefer-destructuring": "warn",
-    "react/jsx-filename-extension": [1, { "extensions": [".tsx", ".ts"] }],
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [
+          ".tsx",
+          ".ts"
+        ]
+      }
+    ],
     "react/prop-types": "off",
     "react/function-component-definition": [
       "error",
@@ -58,20 +75,36 @@
     "no-console": "error",
     "no-unused-vars": [
       2,
-      { "args": "after-used", "argsIgnorePattern": "^(parent|args)" }
+      {
+        "args": "after-used",
+        "argsIgnorePattern": "^(parent|args)"
+      }
     ],
     "@typescript-eslint/no-unused-vars": [
       2,
-      { "args": "after-used", "argsIgnorePattern": "^(parent|args)" }
+      {
+        "args": "after-used",
+        "argsIgnorePattern": "^(parent|args)"
+      }
     ],
     "jsx-a11y/anchor-is-valid": [
       "error",
       {
-        "components": ["Link"],
-        "specialLink": ["hrefLeft", "hrefRight"],
-        "aspects": ["invalidHref", "preferButton"]
+        "components": [
+          "Link"
+        ],
+        "specialLink": [
+          "hrefLeft",
+          "hrefRight"
+        ],
+        "aspects": [
+          "invalidHref",
+          "preferButton"
+        ]
       }
     ]
   },
-  "ignorePatterns": ["prisma/generated/*"]
+  "ignorePatterns": [
+    "prisma/generated/*"
+  ]
 }

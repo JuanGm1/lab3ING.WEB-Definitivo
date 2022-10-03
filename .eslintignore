@@ -1,1 +1,4 @@
 pages/*
+coverage
+.eslintrc.js
+.tailwind.config.js
