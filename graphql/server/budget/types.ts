@@ -9,7 +9,7 @@ const budgetTypes = gql`
 
   type Query {
     getBudgets: [Budget]
-    getBudget: Budget
+    getBudget(id: ID): Budget
   }
 
   type Mutation {

@@ -2,11 +2,13 @@ import { NextPage } from 'next/types';
 import { useMutation } from '@apollo/client';
 import { SyntheticEvent, useState } from 'react';
 import { CREATE_DESTINATION } from '@graphql/client/destinations/mutations/destinations';
+import { CREATE_BUDGET } from '@graphql/client/budget/mutation/budget';
 import { Header } from '@components/header';
 import { Footer } from '@components/footer';
 
 const CreateDestination: NextPage = () => {
   const [createDestination] = useMutation(CREATE_DESTINATION);
+  const [createBudget] = useMutation(CREATE_BUDGET);
   const [name, setName] = useState('');
   const [transportType, setTransportType] = useState('land');
   const [startDate, setStartDate] = useState('');
@@ -26,12 +28,17 @@ const CreateDestination: NextPage = () => {
       msg += 'La fecha de inicio debe ser a futuro';
     }
     if (correctDates && correctFuture) {
-      await createDestination({
+      const newDestination = await createDestination({
         variables: {
           name: name,
           transportation: transportType,
           startDate: startDate,
           endDate: endDate,
+        },
+      });
+      await createBudget({
+        variables: {
+          destinationId: newDestination.data.createDestination.id,
         },
       });
     } else {
@@ -71,7 +78,7 @@ const CreateDestination: NextPage = () => {
         />
         <button
           type='submit'
-          class='btn btn-rounded border-2 ml-4'
+          className='btn btn-rounded border-2 ml-4'
           onClick={call}
         >
           enviar
