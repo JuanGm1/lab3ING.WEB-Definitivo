@@ -29,7 +29,6 @@ const EditDestination = ({ id }: EditDestinationProps) => {
     fetchPolicy: 'no-cache',
   });
 
-
   useEffect(() => {
     if (data != null) {
       setDestination(data);
@@ -91,42 +90,44 @@ const EditDestination = ({ id }: EditDestinationProps) => {
 
   return (
     <>
-      <Header />
-      <div className='maincontent'>
-        <h1>Destination</h1>
-        <input
-          value={name}
-          name='firstName'
-          onChange={e => setName(e.target.value)}
-        />
-        <span>Fecha Inicio: </span>
-        <select onChange={e => setTransportType(e.target.value)}>
-          <option>land</option>
-          <option>maritime</option>
-          <option>aerial</option>
-        </select>
-        <input
-          placeholder='Fecha inicio'
-          name='startDate'
-          type='date'
-          value={startDate}
-          onChange={e => setStartDate(e.target.value)}
-        />
-        <input
-          placeholder='Fecha fin'
-          name='endDate'
-          type='date'
-          value={endDate}
-          onChange={e => setEndDate(e.target.value)}
-        />
-        <button type='submit' className='border-2 ml-4' onClick={call}>
-          enviar
-        </button>
-        <button type='submit' className='border-2 ml-4' onClick={deleteT}>
-          eliminar
-        </button>
+      <div className='flex flex-col h-full m-4'>
+        <Header />
+        <div className='maincontent'>
+          <h1>Destination</h1>
+          <input
+            value={name}
+            name='firstName'
+            onChange={e => setName(e.target.value)}
+          />
+          <span>Fecha Inicio: </span>
+          <select onChange={e => setTransportType(e.target.value)}>
+            <option>land</option>
+            <option>maritime</option>
+            <option>aerial</option>
+          </select>
+          <input
+            placeholder='Fecha inicio'
+            name='startDate'
+            type='date'
+            value={startDate}
+            onChange={e => setStartDate(e.target.value)}
+          />
+          <input
+            placeholder='Fecha fin'
+            name='endDate'
+            type='date'
+            value={endDate}
+            onChange={e => setEndDate(e.target.value)}
+          />
+          <button type='submit' className='border-2 ml-4' onClick={call}>
+            enviar
+          </button>
+          <button type='submit' className='border-2 ml-4' onClick={deleteT}>
+            eliminar
+          </button>
+        </div>
+        <Footer />
       </div>
-      <Footer />
     </>
   );
 };
