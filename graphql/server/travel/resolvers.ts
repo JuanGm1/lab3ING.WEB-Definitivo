@@ -43,14 +43,12 @@ const travelResolvers: Resolver = {
       return count;
     },
     getTravel: async (parent, args) => {
-      console.log("--------------------------------------------------------------------------------")
-      
+      console.log(args);
       const travel = await prisma.travel.findUnique({
         where: {
           id: args.id,
         },
       });
-      console.log(travel)
       return travel;
     },
   },
