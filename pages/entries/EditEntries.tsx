@@ -1,91 +1,58 @@
 import { NextPage } from 'next/types';
 import { useMutation, useQuery } from '@apollo/client';
 import { SyntheticEvent, useEffect, useState } from 'react';
-import {
-  UPDATE_DESTINATION,
-  DELETE_DESTINATION,
-} from '@graphql/client/destinations/mutations/destinations';
-import GET_DESTINATION from '@graphql/client/destinations/queries/destinations';
 import { Header } from '@components/header';
 import { Footer } from '@components/footer';
+import {
+  DELETE_ENTRY,
+  UPDATE_ENTRY,
+} from '@graphql/client/entries/mutation/entries';
+import { GET_ENTRY } from '@graphql/client/entries/queries/entries';
 
-interface EditDestinationProps {
+interface EditEntriesProps {
   id: string;
 }
 
-const EditDestination = ({ id }: EditDestinationProps) => {
-  const destinationId = 'cl7guj1wx0448xcumwfws5sjg';
-  const [updateDestination] = useMutation(UPDATE_DESTINATION);
-  const [deleteDestination] = useMutation(DELETE_DESTINATION);
-  const [name, setName] = useState('');
-  const [startDate, setStartDate] = useState('');
-  const [endDate, setEndDate] = useState('');
-  const [transportType, setTransportType] = useState('land');
-  const [destination, setDestination] = useState([]);
-  const { data, loading } = useQuery(GET_DESTINATION, {
+const EditEntries = ({ id }: EditEntriesProps) => {
+  const entryId = 'cl8tmh1a2000duzookg8uw9q9';
+  const [deleteEntry] = useMutation(DELETE_ENTRY);
+  const [UpdateEntry] = useMutation(UPDATE_ENTRY);
+  const [amount, setAmount] = useState('');
+  const [category, setCategory] = useState('food');
+  const [entry, setEntry] = useState([]);
+  const { data, loading } = useQuery(GET_ENTRY, {
     variables: {
-      getDestinationId: id,
+      getEntryId: entryId,
     },
     fetchPolicy: 'no-cache',
   });
 
-  console.log(data);
-
   useEffect(() => {
-    if (data != null) {
-      setDestination(data);
+    if (data != null || !loading) {
+      setAmount(data.getEntry.amount);
+      setCategory(data.getEntry.category);
+      setEntry(data);
     }
   }, [data]);
 
-  useEffect(() => {
-    if (!loading) {
-      setName(data.getDestination.name);
-      const sdYear = data.getDestination.startDate.substring(0, 4) + '-';
-      const sdMonth = data.getDestination.startDate.substring(5, 7) + '-';
-      const sdDay = data.getDestination.startDate.substring(8, 10);
-      const edYear = data.getDestination.endDate.substring(0, 4) + '-';
-      const edMonth = data.getDestination.endDate.substring(5, 7) + '-';
-      const edDay = data.getDestination.endDate.substring(8, 10);
-      setStartDate(sdYear + sdMonth + sdDay);
-      setEndDate(edYear + edMonth + edDay);
-    }
-  }, [data]);
 
-  const call = async (e: SyntheticEvent) => {
+  const editE = async (e: SyntheticEvent) => {
     e.preventDefault();
-    const correctDates = startDate < endDate;
-    const now = new Date();
-    const correctFuture = startDate >= now.toISOString();
-
-    var msg = '';
-    if (!correctDates) {
-      msg = 'La fecha de inicio debe ser menor a la fecha de fin del viaje';
-    }
-    if (!correctFuture) {
-      msg += 'La fecha de inicio debe ser a futuro';
-    }
-
-    if (correctDates && correctFuture) {
-      await updateDestination({
-        variables: {
-          updateDestinationId: destinationId,
-          name: name,
-          startDate: startDate,
-          endDate: endDate,
-          transportation: transportType,
-        },
-      });
-    } else {
-      alert(msg);
-    }
+    const amountFloat = parseFloat(amount);
+    await UpdateEntry({
+      variables: {
+        updateEntryId: entryId,
+        amount: amountFloat,
+        category: category,
+      },
+    });
   };
 
-  const deleteT = async (e: SyntheticEvent) => {
+  const deleteE = async (e: SyntheticEvent) => {
     e.preventDefault();
-
-    await deleteDestination({
+    await deleteEntry({
       variables: {
-        deleteDestinationId: destinationId,
+        deleteEntryId: entryId,
       },
     });
   };
@@ -94,37 +61,23 @@ const EditDestination = ({ id }: EditDestinationProps) => {
     <>
       <Header />
       <div className='maincontent'>
-        <h1>Destination</h1>
+        <h1>Monto</h1>
         <input
-          value={name}
-          name='firstName'
-          onChange={e => setName(e.target.value)}
+          value={amount}
+          name='Monto'
+          placeholder='Ingrese monto'
+          onChange={e => setAmount(e.target.value)}
         />
-        <span>Fecha Inicio: </span>
-        <select onChange={e => setTransportType(e.target.value)}>
-          <option>land</option>
-          <option>maritime</option>
-          <option>aerial</option>
+        <span>Categoria: </span>
+        <select onChange={e => setCategory(e.target.value)}>
+          <option>food</option>
+          <option>entretaiment</option>
         </select>
-        <input
-          placeholder='Fecha inicio'
-          name='startDate'
-          type='date'
-          value={startDate}
-          onChange={e => setStartDate(e.target.value)}
-        />
-        <input
-          placeholder='Fecha fin'
-          name='endDate'
-          type='date'
-          value={endDate}
-          onChange={e => setEndDate(e.target.value)}
-        />
-        <button type='submit' className='border-2 ml-4' onClick={call}>
-          enviar
+        <button type='submit' className='border-2 ml-4' onClick={editE}>
+          Actualizar entrada
         </button>
-        <button type='submit' className='border-2 ml-4' onClick={deleteT}>
-          eliminar
+        <button type='submit' className='border-2 ml-4' onClick={deleteE}>
+          Eliminar entrada
         </button>
       </div>
       <Footer />
@@ -132,4 +85,4 @@ const EditDestination = ({ id }: EditDestinationProps) => {
   );
 };
 
-export default EditDestination;
+export default EditEntries;

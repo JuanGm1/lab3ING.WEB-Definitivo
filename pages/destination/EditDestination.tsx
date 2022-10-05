@@ -29,7 +29,6 @@ const EditDestination = ({ id }: EditDestinationProps) => {
     fetchPolicy: 'no-cache',
   });
 
-  console.log(data);
 
   useEffect(() => {
     if (data != null) {

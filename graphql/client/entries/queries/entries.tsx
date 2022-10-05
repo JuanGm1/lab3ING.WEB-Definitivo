@@ -11,5 +11,14 @@ const GET_ENTRIES = gql`
     }
   }
 `;
+const GET_ENTRY = gql`
+  query getEntry($getEntryId: ID) {
+    getEntry(id: $getEntryId) {
+      id
+      amount
+      category
+    }
+  }
+`;
 
-export default GET_ENTRIES;
+export { GET_ENTRIES, GET_ENTRY };

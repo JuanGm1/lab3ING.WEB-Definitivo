@@ -38,6 +38,7 @@ const entryResolvers: Resolver = {
       return entry;
     },
     updateEntry: async (parent, args) => {
+      console.log(args);
       const entry = await prisma.entry.update({
         where: {
           id: args.id,

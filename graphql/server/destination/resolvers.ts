@@ -52,8 +52,6 @@ const destinationResolvers: Resolver = {
       return destinations;
     },
     getDestination: async (parent, args) => {
-      // eslint-disable-next-line no-console, prettier/prettier
-      console.log('Back parametro:', args);
       const destination = await prisma.destination.findUnique({
         where: {
           id: args.id,

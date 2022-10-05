@@ -23,7 +23,6 @@ const CreateTravel: NextPage = () => {
       //setbudget(data.destinations.budget);
     }
   }, [data]);
-  console.log(data);
 
   return (
     <div>
