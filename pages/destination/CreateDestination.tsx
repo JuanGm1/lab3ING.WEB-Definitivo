@@ -19,7 +19,6 @@ const CreateDestination: NextPage = () => {
     const correctDates = startDate < endDate;
     const now = new Date();
     const correctFuture = startDate >= now.toISOString();
-
     var msg = '';
     if (!correctDates) {
       msg = 'La fecha de inicio debe ser menor a la fecha de fin del viaje';
