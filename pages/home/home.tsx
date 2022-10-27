@@ -9,7 +9,7 @@ import {
   FaSearch,
 } from 'react-icons/fa';
 
-export const InitialPage = () => (
+const InitialPage = () => (
   <>
     <Header />
     <div className='text-center text-blue-200 font-bold text-3xl py-4'>
@@ -43,7 +43,7 @@ export const InitialPage = () => (
           <p className='text-blue-200'>
             <span className='italic flex gap-2'>
               <FaRegEdit className='mt-1' />
-              <Link href='/travel/EditTravel'>Editar un viaje</Link>
+              <Link href='/travel/EditTravel/'>Editar un viaje</Link>
             </span>
           </p>
           <p className='text-blue-200'>
@@ -54,42 +54,79 @@ export const InitialPage = () => (
           </p>
         </div>
       </div>
-      <div className='max-w-sm rounded overflow-hidden shadow-lg m-4 bg-blue-50'>
-        <div className='px-6 py-4'>
-          <img src='/travel.jpg' alt='travel' width='200' height='200' />
+      <div className='max-w-sm rounded-xl overflow-hidden shadow-lg m-4 border-blue-100 border-2 bg-blue-50'>
+        <div className='px-6 pb-3'>
           <div className='font-bold text-xl mb-2 text-blue-200'>
             <p className='pt-2'>Actividad</p>
           </div>
+          <img
+            src='/travel.jpg'
+            alt='travel'
+            width='200'
+            height='200'
+            className='mb-2 rounded-xl '
+          />
           <p className='text-blue-200'>
-            Crear una <Link href='/activities/CreateActivities'>actividad</Link>
+            <span className='italic flex gap-2'>
+              <FaRegCalendarAlt className='mt-1' />
+              <Link href='/activities/CreateActivities'>
+                Crear una actividad
+              </Link>
+            </span>
           </p>
         </div>
       </div>
-      <div className='max-w-sm rounded overflow-hidden shadow-lg m-4 bg-blue-50'>
-        <div className='px-6 py-4'>
-          <img src='/travel.jpg' alt='travel' width='200' height='200' />
+      <div className='max-w-sm rounded-xl overflow-hidden shadow-lg m-4 border-blue-100 border-2 bg-blue-50'>
+        <div className='px-6 pb-3'>
           <div className='font-bold text-xl mb-2 text-blue-200'>
             <p className='pt-2'>Presupuesto</p>
           </div>
+          <img
+            src='/travel.jpg'
+            alt='travel'
+            width='200'
+            height='200'
+            className='mb-2 rounded-xl '
+          />
           <p className='text-blue-200'>
-            Crear una <Link href='/activities/CreateEntries'>entrada</Link>
+            <span className='italic flex gap-2'>
+              <FaRegCalendarAlt className='mt-1' />
+              <Link href='/activities/CreateEntries'>Crear una entrada</Link>
+            </span>
           </p>
           <p className='text-blue-200'>
-            Editar una <Link href='/activities/EditEntries'>entrada</Link>
+            <span className='italic flex gap-2'>
+              <FaRegEdit className='mt-1' />
+              <Link href='/activities/EditEntries'>Editar una entrada</Link>
+            </span>
           </p>
         </div>
       </div>
-      <div className='max-w-sm rounded overflow-hidden shadow-lg m-4 bg-blue-50'>
-        <div className='px-6 py-4'>
-          <img src='/travel.jpg' alt='travel' width='200' height='200' />
+      <div className='max-w-sm rounded-xl overflow-hidden shadow-lg m-4 border-blue-100 border-2 bg-blue-50'>
+        <div className='px-6 pb-3'>
           <div className='font-bold text-xl mb-2 text-blue-200'>
             <p className='pt-2'>Destino</p>
           </div>
+          <img
+            src='/travel.jpg'
+            alt='travel'
+            width='200'
+            height='200'
+            className='mb-2 rounded-xl '
+          />
           <p className='text-blue-200'>
-            Crear un <Link href='/destination/CreateDestination'>destino</Link>
+            <span className='italic flex gap-2'>
+              <FaRegCalendarAlt className='mt-1' />
+              <Link href='/destination/CreateDestination'>
+                Crear un destino
+              </Link>
+            </span>
           </p>
           <p className='text-blue-200'>
-            Editar un <Link href='/destination/EditDestination'>destino</Link>
+            <span className='italic flex gap-2'>
+              <FaRegEdit className='mt-1' />
+              <Link href='/destination/EditDestination'>Editar un destino</Link>
+            </span>
           </p>
         </div>
       </div>
@@ -97,3 +134,6 @@ export const InitialPage = () => (
     <Footer />
   </>
 );
+
+export default InitialPage;
+

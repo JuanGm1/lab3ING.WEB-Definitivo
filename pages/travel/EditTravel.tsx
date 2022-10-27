@@ -5,10 +5,10 @@ import {
   UPDATE_TRAVEL,
   DELETE_TRAVEL,
 } from '@graphql/client/travels/mutations/travels';
-import {GET_TRAVEL} from '@graphql/client/travels/queries/travels';
+import { GET_TRAVEL } from '@graphql/client/travels/queries/travels';
 
-const EditTravel: NextPage = ({ id }) => {
-  const travelId = id;
+const EditTravel: NextPage = ({ }) => {
+  const travelId = id = "cl7gt2uy00071xcum1u3ry9rs";
   const [updateTravel] = useMutation(UPDATE_TRAVEL);
   const [deleteTravel] = useMutation(DELETE_TRAVEL);
 
@@ -78,32 +78,44 @@ const EditTravel: NextPage = ({ id }) => {
   return (
     <div>
       <h1>Travel</h1>
-      <input
-        value={name}
-        name='firstName'
-        onChange={e => setName(e.target.value)}
-      />
-      <span>Fecha Inicio: </span>
-      <input
-        placeholder='Fecha inicio'
-        name='startDate'
-        type='date'
-        value={startDate}
-        onChange={e => setStartDate(e.target.value)}
-      />
-      <input
-        placeholder='Fecha fin'
-        name='endDate'
-        type='date'
-        value={endDate}
-        onChange={e => setEndDate(e.target.value)}
-      />
-      <button type='submit' className='border-2 ml-4' onClick={call}>
-        enviar
-      </button>
-      <button type='submit' className='border-2 ml-4' onClick={deleteT}>
-        eliminar
-      </button>
+      <div className='max-w-sm rounded-xl overflow-hidden shadow-lg m-4 border-blue-100 border-2 bg-blue-50'>
+        <div className='px-6 pb-3'>
+          <div className='font-bold text-xl mb-2 text-blue-200'>
+            <p className='pt-2'>Viaje</p>
+          </div>
+          <input
+            value={name}
+            name='firstName'
+            onChange={e => setName(e.target.value)}
+          />
+          <input
+            value={name}
+            name='firstName'
+            onChange={e => setName(e.target.value)}
+          />
+          <span>Fecha Inicio: </span>
+          <input
+            placeholder='Fecha inicio'
+            name='startDate'
+            type='date'
+            value={startDate}
+            onChange={e => setStartDate(e.target.value)}
+          />
+          <input
+            placeholder='Fecha fin'
+            name='endDate'
+            type='date'
+            value={endDate}
+            onChange={e => setEndDate(e.target.value)}
+          />
+          <button type='submit' className='border-2 ml-4' onClick={call}>
+            enviar
+          </button>
+          <button type='submit' className='border-2 ml-4' onClick={deleteT}>
+            eliminar
+          </button>
+        </div>
+      </div>
     </div>
   );
 };
