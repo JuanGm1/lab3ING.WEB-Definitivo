@@ -3,7 +3,7 @@ import { gql } from 'apollo-server-micro';
 const entryTypes = gql`
   enum Enum_CategoryTipe {
     food
-    entretainment
+    entertainment
     transportation
     shopping
   }

@@ -26,6 +26,15 @@ const likeResolvers: Resolver = {
             const likes = await prisma.like.findMany();
             return likes;
         },
+    
+        getLike: async (parent, args) => {
+            const like = await prisma.like.findUnique({
+                where: {
+                    id: args.id
+                },
+            });
+            return like;
+        },
     },
     Mutation: {
         createLike: async (parent, args) => {
@@ -36,6 +45,18 @@ const likeResolvers: Resolver = {
                 },
             });
             return like;
+        },
+        updateLike: async (parent, args) => {
+            const updateLike = await prisma.like.update({
+                where: {
+                    id: args.id,
+                },
+                data: {
+                    userId: args.userId,
+                    comentaryId: args.comentaryId,
+                },
+            });
+            return updateLike;
         },
         deleteLike: async (parent, args) => {
             const deletelike = await prisma.like.delete({

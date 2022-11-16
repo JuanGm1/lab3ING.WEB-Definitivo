@@ -9,13 +9,11 @@ const userTypes = gql`
   type User {
     id: ID
     name: String
-    username: String
-    password: String
     rol: Enum_Roles
     comentaries: [Comentary]
     replies: [Reply]
     travels: [Travel]
-    likes:[Like]
+    likes: [Like]
   }
 
   type Query {
@@ -23,13 +21,8 @@ const userTypes = gql`
     getUser(id: ID!): User
   }
   type Mutation {
-    createUser(
-      name: String
-      username: String
-      password: String
-      rol: Enum_Roles
-    ): User
-    updateUser(id: String, name: String): User
+    createUser(name: String, rol: Enum_Roles): User
+    updateUser(id: String, name: String, rol: Enum_Roles): User
     deleteUser(id: String): User
   }
 `;

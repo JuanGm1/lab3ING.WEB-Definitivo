@@ -32,13 +32,12 @@ const budgetResolvers: Resolver = {
         },
       });
       return budget;
-    }
+    },
   },
   Mutation: {
     createBudget: async (parent, args) => {
       const budget = await prisma.budget.create({
         data: {
-          amount: args.amount,
           destinationId: args.destinationID,
         },
       });
@@ -58,12 +57,11 @@ const budgetResolvers: Resolver = {
           id: args.id,
         },
         data: {
-          amount: args.amount,
           destinationId: args.destinationID,
         },
       });
       return budget;
-    }
+    },
   },
 };
 

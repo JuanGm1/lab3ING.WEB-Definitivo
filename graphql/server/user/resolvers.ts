@@ -34,7 +34,8 @@ const userResolvers: Resolver = {
         },
       });
       return travels;
-    }, likes: async (parent, args) => {
+    },
+    likes: async (parent, args) => {
       const likes = await prisma.like.findMany({
         where: {
           userId: parent.id,
@@ -62,8 +63,6 @@ const userResolvers: Resolver = {
       const user = await prisma.user.create({
         data: {
           name: args.name,
-          username: args.username,
-          password: args.password,
           rol: args.rol,
         },
       });
@@ -76,6 +75,7 @@ const userResolvers: Resolver = {
         },
         data: {
           name: args.name,
+          rol: args.rol,
         },
       });
       return updateUser;
