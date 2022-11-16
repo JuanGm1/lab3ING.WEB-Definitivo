@@ -94,13 +94,13 @@ const Home: NextPage = () => (
           <p className='text-blue-200'>
             <span className='italic flex gap-2'>
               <FaRegCalendarAlt className='mt-1' />
-              <Link href='/activities/CreateEntries'>Crear una entrada</Link>
+              <Link href='/entries/CreateEntries'>Crear una entrada</Link>
             </span>
           </p>
           <p className='text-blue-200'>
             <span className='italic flex gap-2'>
               <FaRegEdit className='mt-1' />
-              <Link href='/activities/EditEntries'>Editar una entrada</Link>
+              <Link href='/entries/EditEntries'>Editar una entrada</Link>
             </span>
           </p>
         </div>

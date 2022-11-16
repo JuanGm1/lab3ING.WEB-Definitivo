@@ -8,7 +8,7 @@ import {
 import { GET_TRAVEL } from '@graphql/client/travels/queries/travels';
 
 const EditTravel: NextPage = ({ }) => {
-  const travelId = id = "cl7gt2uy00071xcum1u3ry9rs";
+  const travelId  = "cl7gt2uy00071xcum1u3ry9rs";
   const [updateTravel] = useMutation(UPDATE_TRAVEL);
   const [deleteTravel] = useMutation(DELETE_TRAVEL);
 

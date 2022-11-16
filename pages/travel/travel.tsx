@@ -27,7 +27,7 @@ const CreateTravel: NextPage = () => {
   });
 
   useEffect(() => {
-    setCommentaryText("  Cargando... Espere Malparido")
+    setCommentaryText("  Cargando...")
     if (!loading) {
       setName(data.name);
       setCommentaryText(datatravel.getCountUsersOnTravel);
