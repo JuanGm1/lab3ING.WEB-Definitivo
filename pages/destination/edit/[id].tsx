@@ -88,42 +88,67 @@ const EditDestination = () => {
   };
 
   return (
-    <>
-      <div className='maincontent w-full h-full'>
-        <h1>Destination</h1>
-        <input
-          value={name}
-          name='firstName'
-          onChange={e => setName(e.target.value)}
-        />
-        <span>Fecha Inicio: </span>
-        <select onChange={e => setTransportType(e.target.value)}>
-          <option>land</option>
-          <option>maritime</option>
-          <option>aerial</option>
-        </select>
-        <input
-          placeholder='Fecha inicio'
-          name='startDate'
-          type='date'
-          value={startDate}
-          onChange={e => setStartDate(e.target.value)}
-        />
-        <input
-          placeholder='Fecha fin'
-          name='endDate'
-          type='date'
-          value={endDate}
-          onChange={e => setEndDate(e.target.value)}
-        />
-        <button type='submit' className='border-2 ml-4' onClick={call}>
-          enviar
-        </button>
-        <button type='submit' className='border-2 ml-4' onClick={deleteT}>
-          eliminar
-        </button>
+    <div className='m-auto'>
+      <div className='max-w-sm rounded-xl overflow-hidden shadow-lg m-4 border-blue-100 border-2 bg-blue-50'>
+        <div className='px-6 pb-3'>
+          <span className='font-bold text-xl mb-2 text-blue-200'>
+            <p className='pt-2'>Destination</p>
+          </span>
+          <input
+            value={name}
+            name='firstName'
+            onChange={e => setName(e.target.value)}
+          />
+          <br />
+          <span className='font-bold text-xl mb-2 text-blue-200'>
+            Transportation
+          </span>
+          <br />
+          <select onChange={e => setTransportType(e.target.value)}>
+            <option>land</option>
+            <option>maritime</option>
+            <option>aerial</option>
+          </select>
+          <br />
+          <span className='font-bold text-xl mb-2 text-blue-200'>
+            Start date
+          </span>
+          <br />
+          <input
+            placeholder='Fecha inicio'
+            name='startDate'
+            type='date'
+            value={startDate}
+            onChange={e => setStartDate(e.target.value)}
+          />
+          <br />
+          <span className='font-bold text-xl mb-2 text-blue-200'>End date</span>
+          <br />
+          <input
+            placeholder='Fecha fin'
+            name='endDate'
+            type='date'
+            value={endDate}
+            onChange={e => setEndDate(e.target.value)}
+          />
+          <br />
+          <button
+            type='submit'
+            className='bg-blue-200 hover:bg-blue-700 text-white font-bold py-2 px-4 mt-3 rounded mr-2'
+            onClick={call}
+          >
+            Create destination
+          </button>
+          <button
+            type='submit'
+            className='bg-blue-200 hover:bg-blue-700 text-white font-bold py-2 px-4 mt-3 rounded mr-2'
+            onClick={deleteT}
+          >
+            Delete destination
+          </button>
+        </div>
       </div>
-    </>
+    </div>
   );
 };
 

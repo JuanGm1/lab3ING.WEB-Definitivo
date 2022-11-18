@@ -7,8 +7,9 @@ import {
 } from '@graphql/client/travels/mutations/travels';
 import { GET_TRAVEL } from '@graphql/client/travels/queries/travels';
 
-const EditTravel: NextPage = ({ }) => {
-  const travelId = id = "cl7gt2uy00071xcum1u3ry9rs";
+const EditTravel: NextPage = ({}) => {
+  const travelId = 'cl7gt57ft0122xcumuymdpbo2';
+  const id = 'cl7gt57ft0122xcumuymdpbo2';
   const [updateTravel] = useMutation(UPDATE_TRAVEL);
   const [deleteTravel] = useMutation(DELETE_TRAVEL);
 
@@ -22,9 +23,9 @@ const EditTravel: NextPage = ({ }) => {
     },
     fetchPolicy: 'no-cache',
   });
-
+  console.log(data);
   useEffect(() => {
-    if (!loading) {
+    if (!loading && data) {
       setName(data.getTravel.name);
       const sdYear = data.getTravel.startDate.substring(0, 4) + '-';
       const sdMonth = data.getTravel.startDate.substring(5, 7) + '-';
@@ -76,24 +77,22 @@ const EditTravel: NextPage = ({ }) => {
   };
 
   return (
-    <div>
-      <h1>Travel</h1>
+    <div className='m-auto'>
       <div className='max-w-sm rounded-xl overflow-hidden shadow-lg m-4 border-blue-100 border-2 bg-blue-50'>
         <div className='px-6 pb-3'>
-          <div className='font-bold text-xl mb-2 text-blue-200'>
+          <span className='font-bold text-xl mb-2 text-blue-200'>
             <p className='pt-2'>Viaje</p>
-          </div>
+          </span>
           <input
             value={name}
             name='firstName'
             onChange={e => setName(e.target.value)}
           />
-          <input
-            value={name}
-            name='firstName'
-            onChange={e => setName(e.target.value)}
-          />
-          <span>Fecha Inicio: </span>
+          <br />
+          <span className='font-bold text-xl mb-2 text-blue-200'>
+            Fecha Inicio:{' '}
+          </span>
+          <br />
           <input
             placeholder='Fecha inicio'
             name='startDate'
@@ -101,6 +100,11 @@ const EditTravel: NextPage = ({ }) => {
             value={startDate}
             onChange={e => setStartDate(e.target.value)}
           />
+          <br />
+          <span className='font-bold text-xl mb-2 text-blue-200'>
+            Fecha final:{' '}
+          </span>
+          <br />
           <input
             placeholder='Fecha fin'
             name='endDate'
@@ -108,11 +112,20 @@ const EditTravel: NextPage = ({ }) => {
             value={endDate}
             onChange={e => setEndDate(e.target.value)}
           />
-          <button type='submit' className='border-2 ml-4' onClick={call}>
-            enviar
+          <br />
+          <button
+            type='submit'
+            className='bg-blue-200 hover:bg-blue-700 text-white font-bold py-2 px-4 mt-3 rounded mr-2'
+            onClick={call}
+          >
+            Change
           </button>
-          <button type='submit' className='border-2 ml-4' onClick={deleteT}>
-            eliminar
+          <button
+            type='submit'
+            className='bg-blue-200 hover:bg-blue-700 text-white font-bold py-2 px-4 mt-3 rounded'
+            onClick={deleteT}
+          >
+            Delelte
           </button>
         </div>
       </div>

@@ -1,13 +1,9 @@
-import { FaAvianex, FaRegUser } from 'react-icons/fa';
+import { FaRegUser } from 'react-icons/fa';
 
 export const Header = () => (
   <div className='header flex  w-full bg-blue-200 text-white'>
-    <div className='flex-none w-14 h-14'>
-      <p>
-        <FaAvianex />
-        Travel Planer
-      </p>
-    </div>
+    <img src='/logo.png' alt='travel' width='60' height='20' />
+    <p className='mt-6'>Travel Planer</p>
     <div className='grow ' />
     <div className='flex-none w-100 h-14 mr-4 mt-4'>
       <button

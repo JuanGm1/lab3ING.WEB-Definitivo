@@ -10,21 +10,21 @@ import { Footer } from '@components/footer';
 // }
 
 const CreateActivities = (/*{ idDestination }: CreateActivitiesProps*/) => {
-  const idDestination  = 'cl7guj1wx0448xcumwfws5sjg';
+  const idDestination = 'cl7guj1wx0448xcumwfws5sjg';
   const [CreateActivities] = useMutation(CREATE_ACTIVITY);
   const [description, setDescription] = useState('');
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
 
   const submit = async (e: SyntheticEvent) => {
-    const idDestination  = 'cl7guj1wx0448xcumwfws5sjg';
+    const idDestination = 'cl7guj1wx0448xcumwfws5sjg';
     e.preventDefault();
     const now = new Date();
     const correctFuture = startDate >= now.toISOString();
 
     var msg = '';
     if (!correctFuture) {
-      msg += 'La fecha de inicio debe ser a futuro';
+      msg += 'the initial date must be in the future';
     }
     if (correctFuture) {
       await CreateActivities({
@@ -40,34 +40,39 @@ const CreateActivities = (/*{ idDestination }: CreateActivitiesProps*/) => {
   };
 
   return (
-    <>
-      <Header />
-      <div>
-        <h1>Activity</h1>
-        <input
-          placeholder='Ingrese descripcion'
-          value={description}
-          name='Description'
-          onChange={e => setDescription(e.target.value)}
-        />
-        <span>Fecha tentativa de inicio: </span>
-        <input
-          placeholder='Fecha tentativa de inicio'
-          name='startDate'
-          type='date'
-          value={startDate}
-          onChange={e => setStartDate(e.target.value)}
-        />
-        <button
-          type='submit'
-          className='btn btn-rounded border-2 ml-4'
-          onClick={submit}
-        >
-          Enviar
-        </button>
+    <div className='m-auto'>
+      <div className='max-w-sm rounded-xl flex flex-col overflow-hidden shadow-lg m-4 border-blue-100 border-2 bg-blue-50'>
+        <div className='px-6 pb-3'>
+          <h1 className='font-bold text-xl mb-2 text-blue-200'>Activity</h1>
+          <input
+            placeholder='Description'
+            value={description}
+            name='Description'
+            onChange={e => setDescription(e.target.value)}
+          />
+          <br />
+          <span className='font-bold text-xl mb-2 text-blue-200'>
+            Start date:
+          </span>
+          <br />
+          <input
+            placeholder='Fecha tentativa de inicio'
+            name='startDate'
+            type='date'
+            value={startDate}
+            onChange={e => setStartDate(e.target.value)}
+          />
+          <br />
+          <button
+            type='submit'
+            className='bg-blue-200 hover:bg-blue-700 text-white font-bold py-2 px-4 mt-3 rounded'
+            onClick={submit}
+          >
+            Create activity
+          </button>
+        </div>
       </div>
-      <Footer />
-    </>
+    </div>
   );
 };
 

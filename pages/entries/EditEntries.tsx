@@ -35,7 +35,6 @@ const EditEntries = ({ id }: EditEntriesProps) => {
     }
   }, [data]);
 
-
   const editE = async (e: SyntheticEvent) => {
     e.preventDefault();
     const amountFloat = parseFloat(amount);
@@ -58,30 +57,45 @@ const EditEntries = ({ id }: EditEntriesProps) => {
   };
 
   return (
-    <>
-      <Header />
-      <div className='maincontent'>
-        <h1>Monto</h1>
-        <input
-          value={amount}
-          name='Monto'
-          placeholder='Ingrese monto'
-          onChange={e => setAmount(e.target.value)}
-        />
-        <span>Categoria: </span>
-        <select onChange={e => setCategory(e.target.value)}>
-          <option>food</option>
-          <option>entretaiment</option>
-        </select>
-        <button type='submit' className='border-2 ml-4' onClick={editE}>
-          Actualizar entrada
-        </button>
-        <button type='submit' className='border-2 ml-4' onClick={deleteE}>
-          Eliminar entrada
-        </button>
+    <div className='m-auto'>
+      <div className='max-w-sm rounded-xl flex flex-col overflow-hidden shadow-lg m-4 border-blue-100 border-2 bg-blue-50'>
+        <div className='px-6 pb-3'>
+          <h1 className='font-bold text-xl mb-2 text-blue-200'>Entry</h1>
+          <input
+            value={amount}
+            name='Amount'
+            placeholder='Amount'
+            onChange={e => setAmount(e.target.value)}
+          />
+          <br />
+          <span className='font-bold text-xl mb-2 text-blue-200'>
+            Type of entry:
+          </span>
+          <br />
+          <select onChange={e => setCategory(e.target.value)}>
+            <option>Food</option>
+            <option>Entretaiment</option>
+            <option>Transportation</option>
+            <option>Shopping</option>
+          </select>
+          <br />
+          <button
+            type='submit'
+            className='bg-blue-200 hover:bg-blue-700 text-white font-bold mr-3 py-2 px-4 mt-3 rounded'
+            onClick={editE}
+          >
+            Edit entry
+          </button>
+          <button
+            type='submit'
+            className='bg-blue-200 hover:bg-blue-700 text-white font-bold py-2 px-4 mt-3 rounded'
+            onClick={deleteE}
+          >
+            Delete entry
+          </button>
+        </div>
       </div>
-      <Footer />
-    </>
+    </div>
   );
 };
 
